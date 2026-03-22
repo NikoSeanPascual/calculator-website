@@ -18,13 +18,29 @@ let passwordOneText = passwordOneEl.querySelector(".password-text")
 let passwordTwoText = passwordTwoEl.querySelector(".password-text")
 
 passwordOneEl.addEventListener("click", function() {
+    let tooltip = passwordOneEl.querySelector(".tooltip")
+
     navigator.clipboard.writeText(passwordOneText.textContent)
-      .then(() => console.log("Copied!"))
+        .then(() => {
+            tooltip.textContent = "Copied!"
+
+            setTimeout(function() {
+                tooltip.textContent = "Copy Password"
+            }, 1000)
+        })
 })
 
 passwordTwoEl.addEventListener("click", function() {
+    let tooltip = passwordTwoEl.querySelector(".tooltip")
+
     navigator.clipboard.writeText(passwordTwoText.textContent)
-      .then(() => console.log("Copied!"))
+        .then(() => {
+            tooltip.textContent = "Copied!"
+
+            setTimeout(function() {
+                tooltip.textContent = "Copy Password"
+            }, 1000)
+        })
 })
 
 function generatePassword() {
