@@ -54,11 +54,10 @@ Note: I wont be able to update this everyday because of school but I'll try sinc
 
 1. "Copied!" feedback - replace tootip text with **Copied!** for 1 second ✅**ADDED IN 03/22/26**
 2. Password length control - Add some kind of input that can be customize base on how long the password length you want it to be 
-3. Slider for length (better UX) - will use range input instead of number
-4. Include.exclude options - CHECKBOXES
-5. Color feedback - change password bpx color when copied
-6. Regenerate button animation - Add click animation or shake effect
-7. Password strength indicator - strong, medium and weak
-8. Dark/Light mode toggle
-9. Mobile responsiveness - make it look the same when you open it on phones
-10. Export passwords - be able to download the password as .txt
+3. Include.exclude options - CHECKBOXES
+4. Color feedback - change password bpx color when copied
+5. Regenerate button animation - Add click animation or shake effect
+6. Password strength indicator - strong, medium and weak
+7. Dark/Light mode toggle
+8. Mobile responsiveness - make it look the same when you open it on phones
+9. Export passwords - be able to download the password as .txt
