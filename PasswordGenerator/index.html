@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=Happy+Monkey&family=Jersey+10&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap"
-          rel="stylesheet">
-    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <title>Password Generator</title>
 </head>
 <body>
-<h1>Generate a<br><span style="color:#00b51e;">random password</span></h1>
-<p>Never use an insecure password ever again</p>
-<button onclick="generatePassword()" id="generate-el">GENERATE PASSWORDS</button>
+<h1>Generate a<br><span class="accent">random password</span></h1>
+<p class="subtitle">Never use an insecure password ever again</p>
+
+<div class="input-container">
+    <button onclick="generatePassword()" id="generate-el">GENERATE PASSWORDS</button>
+
+    <div class="controls-group">
+        <div class="label-wrapper">
+            <span>Length:</span>
+            <span id="length-val">15</span>
+        </div>
+        <input type="range" id="length-el" min="5" max="20" value="15">
+    </div>
+</div>
+
 <div class="container-h2">
     <h2>PASSWORD #1</h2>
     <h2>PASSWORD #2</h2>
 </div>
-<div class="container">
-    <h3 id="password-one-el">
-        <span class="password-text">Click the button</span>
-        <span class="tooltip">Copy Password</span>
-    </h3>
 
-    <h3 id="password-two-el">
-        <span class="password-text">Click the button</span>
+<div class="password-container">
+    <div class="password-box" id="password-one-el">
+        <span class="password-text">...</span>
         <span class="tooltip">Copy Password</span>
-    </h3>
+    </div>
+
+    <div class="password-box" id="password-two-el">
+        <span class="password-text">...</span>
+        <span class="tooltip">Copy Password</span>
+    </div>
 </div>
+
 <script src="index.js"></script>
 </body>
 </html>
-
