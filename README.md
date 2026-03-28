@@ -56,9 +56,13 @@ Note: I wont be able to update this everyday because of school but I'll try sinc
 2. Password length control - Add some kind of input that can be customize base on how long the password length you want it to be  ✅**ADDED IN 03/24/26**
 3. Slider - Better UI design  ✅**ADDED IN 03/24/26**
 4. Include.exclude options - CHECKBOXES ✅**ADDED IN 03/28/26**
-5. Color feedback - change password bpx color when copied
+5. Color feedback - change password bpx color when copied ✅**ADDED IN 03/28/26**
 6. Regenerate button animation - Add click animation or shake effect
 7. Password strength indicator - strong, medium and weak
 8. Dark/Light mode toggle
 9. Mobile responsiveness - make it look the same when you open it on phones
 10. Export passwords - be able to download the password as .txt
+
+
+### NOTE:
+The link of the live demo isn't updated yet so wait for it
