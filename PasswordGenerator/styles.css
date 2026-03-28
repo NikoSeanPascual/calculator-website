@@ -25,12 +25,21 @@ h1 {
 /* MAIN LAYOUT BAR */
 .input-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 500px;
     border-bottom: 1px solid #3e4c5e;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    gap: 20px;
+}
+
+.settings-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
 }
 
 #generate-el {
@@ -38,8 +47,8 @@ h1 {
     color: whitesmoke;
     border-radius: 4px;
     font-family: "Jersey 10", sans-serif;
-    font-size: 22px;
-    padding: 10px 20px;
+    font-size: 24px;
+    padding: 12px 24px;
     background: #00b51e;
     border: none;
     transition: 0.2s;
@@ -62,7 +71,7 @@ h1 {
 
 .label-wrapper {
     color: #00b51e;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     gap: 10px;
@@ -70,7 +79,7 @@ h1 {
 
 #length-el {
     -webkit-appearance: none;
-    width: 120px;
+    width: 140px;
     background: transparent;
 }
 
@@ -86,14 +95,33 @@ h1 {
     width: 18px;
     border-radius: 50%;
     background: #00b51e;
-    margin-top: -6px; /* Centers thumb on track */
+    margin-top: -6px;
     cursor: pointer;
 }
 
+/* CHECKBOX GROUP */
+.checkbox-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 18px;
+    color: #00b51e;
+}
+
+.checkbox-container label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#uppercase {accent-color: #00b51e; }
+#lowercase {accent-color: #00b51e;}
+#numbers {accent-color: #00b51e;}
+#symbols {accent-color: #00b51e;}
 /* PASSWORD DISPLAY */
 .container-h2 {
     display: flex;
-    gap: 150px;
+    gap: 100px;
     margin-top: 40px;
 }
 
@@ -110,10 +138,14 @@ h2 { color: #00b51e; font-size: 25px; }
     cursor: pointer;
     background: #403e3c;
     padding: 12px;
-    width: 200px;
+    width: 220px;
     text-align: center;
     border-radius: 4px;
-    min-height: 20px;
+    min-height: 25px;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tooltip {
@@ -124,10 +156,11 @@ h2 { color: #00b51e; font-size: 25px; }
     background: #00b51e;
     padding: 4px 8px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0;
     pointer-events: none;
     transition: 0.2s;
+    color: white;
 }
 
 .password-box:hover .tooltip { opacity: 1; }

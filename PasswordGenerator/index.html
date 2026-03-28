@@ -16,12 +16,21 @@
 <div class="input-container">
     <button onclick="generatePassword()" id="generate-el">GENERATE PASSWORDS</button>
 
-    <div class="controls-group">
-        <div class="label-wrapper">
-            <span>Length:</span>
-            <span id="length-val">15</span>
+    <div class="settings-wrapper">
+        <div class="controls-group">
+            <div class="label-wrapper">
+                <span>Length:</span>
+                <span id="length-val">15</span>
+            </div>
+            <input type="range" id="length-el" min="5" max="25" value="15">
         </div>
-        <input type="range" id="length-el" min="5" max="20" value="15">
+
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="uppercase" checked> ABC</label>
+            <label><input type="checkbox" id="lowercase" checked> abc</label>
+            <label><input type="checkbox" id="numbers" checked> 123</label>
+            <label><input type="checkbox" id="symbols" checked> #&%</label>
+        </div>
     </div>
 </div>
 
