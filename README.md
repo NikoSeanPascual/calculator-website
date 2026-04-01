@@ -60,6 +60,6 @@ Note: School is finished so I will upd everyday till this is finished feel free 
 6. Regenerate button animation - Add click animation or shake effect ✅**ADDED IN 03/31/26**
 7. Password strength indicator - strong, medium and weak ✅**ADDED IN 03/31/26**
 8. Dark/Light mode toggle ✅**ADDED IN 03/31/26**
-9. Mobile responsiveness - make it look the same when you open it on phones
-10. Export passwords - be able to download the password as .txt
+9. Mobile responsiveness - make it look the same when you open it on phones ✅**ADDED IN 04/01/26**
+10. Export passwords - be able to download the password as .txt 🚧 **WORK IN PROGRESS**
 
