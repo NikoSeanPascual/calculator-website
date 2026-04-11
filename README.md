@@ -1,55 +1,78 @@
-# 🔢 Unit Converter App
+# 🔢 Niko's Calculator
 
-A simple, interactive and responsive application, designed to convert the number you input into several units. Built to help you if you need to convert something
+A project made to simply try to add as much features possible in a Calculator App, it has a slick and simple design "currently" (it will change a lot, as features get added)
 
-[**View Live Demo 👉**](https://unit-convertion-application.netlify.app/)
+[**View Live Demo 👉**](https://nikos-calculator-app.netlify.app/)
 
 ---
 
 ## ⚙️ How it works
-1. Capturing User Input - The app listens for a click event on the Convert button. Once clicked:
-   * It grabs the value from the input field (inputEl.value).
-   * It converts that string into a Number type to ensure mathematical accuracy.
-   * Validation: If the input is empty or not a valid number, an alert triggers to prevent broken calculations.
 
-2. The Conversion Logic - The app uses fixed conversion constants for precision:
-   * **Length**: 1 Meter = 3.281 Feet
-   * **Volume**: 1 Liter = 0.264 Gallons
-   * **Mass**: 1 Kilogram = 2.204 Pounds
-
-The math is performed in both directions (e.g., Meters to Feet and Feet to Meters) using the .toFixed(3) method to    keep the results clean and limited to three decimal places.
-
-3. Dynamic DOM Updates - Instead of refreshing the page, the app uses innerHTML to inject the results directly into specific display containers:(At the moment, there will be more in the future)
-   * length-container
-   * volume-container
-   * mass-container
-
----
+Capturing User Input - The app listens for a click event to what number you click specifically and after clicking the numbers or operations or events, it will get displayed in the display bar you can calculate it via click the "=" sign or change change the display or number based on what event you clicked (A/C, %, +/-)
 
 ## 📂 Project Structure
 
 ```text
-UnitConverter
+calculator
 │
-├── Assets
 ├── index.html     # Main structure of the application
 ├── styles.css     # UI Styling and containers
-└── index.js       # Core Logic
+└── script.js       # Core Logic
 ```
 ---
 
 ## 🚧 Future updates 
-1. Animations ✅ **added in 04/05/26**
-2. More Conversions
-   - Square metters to square feet ✅ **added in 04/06/26**
-   - Kilobytes(**Kb**) to Megabyte(**Mb**) ✅ **added in 04/06/26**
-   - Kilometer Per Hour(**KPH**) to Miles Per Hour (**MPH**) ✅ **added in 04/06/26**
-3. Theme Toggle - button that turns the backroubnd from light to dark theme ✅ **added in 04/06/26**
-4. UI/UX enhancements
-   - Clear All button
-   - Keyboard Shortcuts:
-      * **Enter** to trigger conversion
-      * **Esc** to clear the input
-      * **D or L** to toggle to Dark Mode to Light Mode
+1. Polishing Updates
+    - Backspace (⌫)
+    - Keyboard input support
+    - Continuous equals (= spam behavior)
+    - Operator highlight
+    - Better error handling (division by 0, NaN)
+    - Disable buttons during error
+    - Decimal precision control
+    - Clear Entry (CE) vs All Clear (AC)
 
-(More Ideas in the future that I might add in the future)
+2. Theme Toggle - Dark Mode to Light mode button
+ 
+3. History System
+    - Scrollable history panel
+    - Click history to reuse result
+    - Clear history button
+    - Persist history (localStorage)
+
+4. Memory System
+    - MC (clear memory)
+    - MR (recall)
+    - M+ (add to memory)
+    - M- (subtract)\
+
+5. Expression Handling
+    - Show full expression (12 + 7 × 3)
+    - Evaluate with proper precedence (BODMAS 👀)
+    - Parentheses support ( )
+
+6. UI/UX Upgrades
+    - Button press animation
+    - Ripple effect
+    - Hover glow
+    - Smooth number transitions
+    - Auto-resize text
+    - Scroll display horizontally
+
+7. Smart Input
+    - Type full expression:
+    -  Press enter -> evaluate
+
+8. Undo/Redo
+    - Undo/Redo 
+      * Ctrl+Z -> Undo
+      * Ctrl+Y -> Redo
+     
+9. Fun Features
+    - sound effects (click click)
+    - glitch mode
+    - “rage mode” if user spams buttons
+    - random math facts
+
+10. Mobile Responsiveness
+    - It should look the same in Mobiles like it looks like in PC
