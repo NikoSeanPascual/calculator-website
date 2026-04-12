@@ -1,23 +1,25 @@
-const display = document.getElementById("display-el");
-const buttons = document.querySelectorAll(".btn");
+const display = document.getElementById("display-el")
+const buttons = document.querySelectorAll(".btn")
+
+const themeBtn = document.getElementById("theme-btn")
+const themeImgs = document.getElementById("theme-imgs")
+
 
 let currentInput = "0";
 let previousInput = null;
 let operator = null;
 let shouldResetDisplay = false;
 
-// Update display
+// DISPLAY
 function formatNumber(numStr) {
     let num = parseFloat(numStr);
 
     if (isNaN(num)) return "Error";
 
-    // If number is too big or too small → scientific notation
     if (Math.abs(num) >= 1e9 || (Math.abs(num) > 0 && Math.abs(num) < 1e-6)) {
-        return num.toExponential(6); // 6 decimal places
+        return num.toExponential(6);
     }
 
-    // Limit to 10 digits total
     let formatted = num.toString();
 
     if (formatted.length > 10) {
@@ -48,7 +50,7 @@ function getOperatorSymbol(op) {
     }
 }
 
-// Handle number input
+// NUMBER INPUT HANDLER
 function inputNumber(num) {
     if (currentInput === "0" || shouldResetDisplay) {
         currentInput = num;
@@ -58,7 +60,7 @@ function inputNumber(num) {
     }
 }
 
-// Handle decimal
+// DECIMAL HANDLER
 function inputDecimal() {
     if (shouldResetDisplay) {
         currentInput = "0.";
@@ -70,7 +72,7 @@ function inputDecimal() {
     }
 }
 
-// Handle operator
+// OPERANDS HANDLER
 function chooseOperator(op) {
     if (operator !== null && !shouldResetDisplay) {
         compute();
@@ -80,10 +82,10 @@ function chooseOperator(op) {
     operator = op;
     shouldResetDisplay = true;
 
-    updateDisplay(); // 👈 force display update immediately
+    updateDisplay();
 }
 
-// Perform calculation
+// CALCULATIONS
 function compute() {
     if (operator === null || shouldResetDisplay) return;
 
@@ -112,24 +114,24 @@ function compute() {
     previousInput = null;
 }
 
-// Clear
+// CLEAR DISPLAY
 function clearAll() {
     currentInput = "0";
     previousInput = null;
     operator = null;
 }
 
-// Toggle sign
+// TOGGLE SIGN
 function toggleSign() {
     currentInput = (parseFloat(currentInput) * -1).toString();
 }
 
-// Percent
+// PERCENT
 function percent() {
     currentInput = (parseFloat(currentInput) / 100).toString();
 }
 
-// Button click handling
+// BUTTON CLICKING HANDLER
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const number = button.dataset.number;
@@ -167,5 +169,39 @@ buttons.forEach(button => {
     });
 });
 
-// Initialize display
+// THEME TOGGLER
+let darkMode = false
+let toggling = false
+
+themeBtn.addEventListener("click", () => {
+    if (toggling) return
+
+    toggling = true
+    themeBtn.disabled = true
+
+    darkMode = !darkMode
+
+    if (darkMode) {
+        document.body.classList.add("dark-theme")
+        themeImgs.src = "assets/dark-mode.png"
+    } else {
+        document.body.classList.remove("dark-theme")
+        themeImgs.src = "assets/light-mode.png"
+    }
+
+    setTimeout(() => {
+        toggling = false
+        themeBtn.disabled = false
+    }, 700)
+})
+
+// KEY SHORTCUTS
+document.addEventListener("keydown", function (e) {
+    const key = e.key.toLowerCase()
+
+    // DARK AND LIGHT MODE SHORTCUT (D)
+    if (key === "d" ) {
+        if (!toggling) themeBtn.click()
+    }
+})
 updateDisplay();
