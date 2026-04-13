@@ -120,6 +120,15 @@ function clearAll() {
     previousInput = null;
     operator = null;
 }
+function backSpace() {
+    if (shouldResetDisplay) return;
+
+    if (currentInput.length > 1) {
+        currentInput = currentInput.slice(0, -1);
+    } else {
+        currentInput = "0";
+    }
+}
 
 // TOGGLE SIGN
 function toggleSign() {
@@ -152,6 +161,9 @@ buttons.forEach(button => {
                     break;
                 case "percent":
                     percent();
+                    break;
+                case "backspace":
+                    backSpace();
                     break;
                 case "add":
                 case "subtract":
@@ -197,11 +209,41 @@ themeBtn.addEventListener("click", () => {
 
 // KEY SHORTCUTS
 document.addEventListener("keydown", function (e) {
-    const key = e.key.toLowerCase()
+    const key = e.key;
 
-    // DARK AND LIGHT MODE SHORTCUT (D)
-    if (key === "d" ) {
-        if (!toggling) themeBtn.click()
+    if (/[0-9]/.test(key)) {
+        inputNumber(key);
     }
+
+    else if (key === "." || key === ",") {
+        inputDecimal();
+    }
+
+    else if (key === "+") chooseOperator("add");
+    else if (key === "-") chooseOperator("subtract");
+    else if (key === "*") chooseOperator("multiply");
+    else if (key === "/") {
+        e.preventDefault();
+        chooseOperator("divide");
+    }
+
+    else if (key === "Enter" || key === "=") {
+        e.preventDefault();
+        compute();
+    }
+
+    else if (key === "Backspace") {
+        backSpace();
+    }
+
+    else if (key === "Escape" || key === "Delete") {
+        clearAll();
+    }
+
+    else if (key.toLowerCase() === "d") {
+        if (!toggling) themeBtn.click();
+    }
+
+    updateDisplay();
 })
 updateDisplay();

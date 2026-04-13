@@ -78,9 +78,11 @@ h1 {
 }
 
 .operator { background: #1e7ff7; }
-.action { background: #fc2d1e; }
+.action { background: #fc2d1e; font-weight:}
 .equals { background: #00ccff; grid-column: span 2; aspect-ratio: auto;}
-
+.btn.action {
+    font-size: 2rem;
+}
 
 /*THEME TOGGLE STYLE*/
 #theme-btn {
