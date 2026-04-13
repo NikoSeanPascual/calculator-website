@@ -23,8 +23,8 @@ calculator
 
 ## 🚧 Future updates 
 1. Polishing Updates
-    - Backspace (⌫)
-    - Keyboard input support
+    - Backspace (⌫) ✅ **FINISHED 04/13/26**
+    - Keyboard input support ✅ **FINISHED 04/13/26**
     - Continuous equals (= spam behavior)
     - Operator highlight
     - Better error handling (division by 0, NaN)
