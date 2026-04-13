@@ -32,7 +32,7 @@ calculator
     - Decimal precision control
     - Clear Entry (CE) vs All Clear (AC)
 
-2. Theme Toggle - Dark Mode to Light mode button
+2. Theme Toggle - Dark Mode to Light mode button ✅ **FINISHED 04/12/26**
  
 3. History System
     - Scrollable history panel
