@@ -71,14 +71,16 @@ h1 {
     font-size: 3rem;
     cursor: pointer;
     border-radius: 5px;
+
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:active {
     background: #c9dcff;
 }
 
-.operator { background: #1e7ff7; }
-.action { background: #fc2d1e; font-weight:}
+.operator { background: #1e7ff7; color: whitesmoke; text-shadow: 0px 0px 12px black}
+.action { background: #fc2d1e;}
 .equals { background: #00ccff; grid-column: span 2; aspect-ratio: auto;}
 .btn.action {
     font-size: 2rem;
@@ -151,4 +153,23 @@ body.dark-theme #theme-btn {
 }
 body.dark-theme #theme-imgs {
     filter: invert(0%);
+}
+
+/* DISABLED STATE ERROR STATE*/
+.btn-disabled {
+    opacity: 0.25;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    filter: grayscale(100%) blur(0.5px);
+    transform: scale(0.95)
+}
+.btn.error-pulse {
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 15px rgba(252, 45, 30, 0.5);
+    z-index: 10;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }

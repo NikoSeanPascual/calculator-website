@@ -20,8 +20,12 @@ function formatNumber(numStr) {
         return num.toExponential(6);
     }
 
-    let formatted = num.toString();
+    if (!Number.isInteger(num)) {
+        let formatted = num.toFixed(8);
+        return parseFloat(formatted).toString();
+    }
 
+    let formatted = num.toString();
     if (formatted.length > 10) {
         formatted = num.toPrecision(10);
     }
@@ -30,16 +34,25 @@ function formatNumber(numStr) {
 }
 
 function updateDisplay() {
+    const isError = currentInput === "Error";
+
+    if (isError) {
+        display.textContent = "Error";
+        setTimeout(() => toggleButtons(true), 50);
+        return;
+    }
+
+    toggleButtons(false);
+
     if (operator && previousInput !== null && !shouldResetDisplay) {
-        display.textContent =
-            `${formatNumber(previousInput.toString())} ${getOperatorSymbol(operator)} ${formatNumber(currentInput)}`;
+        display.textContent = `${formatNumber(previousInput.toString())} ${getOperatorSymbol(operator)} ${formatNumber(currentInput)}`;
     } else if (operator && previousInput !== null) {
-        display.textContent =
-            `${formatNumber(previousInput.toString())} ${getOperatorSymbol(operator)}`;
+        display.textContent = `${formatNumber(previousInput.toString())} ${getOperatorSymbol(operator)}`;
     } else {
         display.textContent = formatNumber(currentInput);
     }
 }
+
 function getOperatorSymbol(op) {
     switch (op) {
         case "add": return "+";
@@ -67,7 +80,7 @@ function inputDecimal() {
         shouldResetDisplay = false;
         return;
     }
-    if (!currentInput.includes(".")) {
+    if (!currentInput.includes(".") && currentInput.length < 9) {
         currentInput += ".";
     }
 }
@@ -89,29 +102,52 @@ function chooseOperator(op) {
 function compute() {
     if (operator === null || shouldResetDisplay) return;
 
+    const prev = parseFloat(previousInput);
     const current = parseFloat(currentInput);
-    let result;
 
+    if (isNaN(prev) || isNaN(current)) {
+        currentInput = "Error";
+        resetCalculatorState();
+        return;
+    }
+
+    let result;
     switch (operator) {
-        case "add":
-            result = previousInput + current;
+        case 'add':
+            result = prev + current;
             break;
-        case "subtract":
-            result = previousInput - current;
+        case 'subtract':
+            result = prev - current;
             break;
-        case "multiply":
-            result = previousInput * current;
+        case 'multiply':
+            result = prev * current;
             break;
-        case "divide":
-            result = current === 0 ? "Error" : previousInput / current;
+        case 'divide':
+            if (current === 0) {
+                currentInput = "Error";
+                resetCalculatorState();
+                return;
+            }
+            result = prev / current;
             break;
         default:
             return;
     }
 
-    currentInput = result.toString();
+    if (!isFinite(result)) {
+        currentInput = "Error";
+    } else {
+        currentInput = strip(result).toString();
+    }
+
+    resetCalculatorState();
+}
+
+// HELPER TO CLEAN UP STATE
+function resetCalculatorState() {
     operator = null;
     previousInput = null;
+    shouldResetDisplay = true;
 }
 
 // CLEAR DISPLAY
@@ -119,6 +155,7 @@ function clearAll() {
     currentInput = "0";
     previousInput = null;
     operator = null;
+    updateDisplay()
 }
 function backSpace() {
     if (shouldResetDisplay) return;
@@ -138,6 +175,26 @@ function toggleSign() {
 // PERCENT
 function percent() {
     currentInput = (parseFloat(currentInput) / 100).toString();
+}
+
+function toggleButtons(disabledStatus) {
+    buttons.forEach(button => {
+        if (button.dataset.action !== 'clear') {
+            button.disabled = disabledStatus;
+
+            if (disabledStatus) {
+                button.classList.add('btn-disabled');
+            } else {
+                button.classList.remove('btn-disabled');
+            }
+        } else {
+            if (disabledStatus) {
+                button.classList.add('error-pulse'); // Adds the pulse during error
+            } else {
+                button.classList.remove('error-pulse'); // Removes it when fixed
+            }
+        }
+    });
 }
 
 // BUTTON CLICKING HANDLER
@@ -226,6 +283,10 @@ document.addEventListener("keydown", function (e) {
         e.preventDefault();
         chooseOperator("divide");
     }
+    else if (key === "%") {
+        e.preventDefault();
+        percent()
+    }
 
     else if (key === "Enter" || key === "=") {
         e.preventDefault();
@@ -247,3 +308,7 @@ document.addEventListener("keydown", function (e) {
     updateDisplay();
 })
 updateDisplay();
+
+function strip(number) {
+    return parseFloat(parseFloat(number).toPrecision(12));
+}
