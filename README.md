@@ -25,12 +25,11 @@ calculator
 1. Polishing Updates
     - Backspace (⌫) ✅ **FINISHED 04/13/26**
     - Keyboard input support ✅ **FINISHED 04/13/26**
-    - Continuous equals (= spam behavior)
-    - Operator highlight
-    - Better error handling (division by 0, NaN)
-    - Disable buttons during error
-    - Decimal precision control
-    - Clear Entry (CE) vs All Clear (AC)
+    - Continuous equals (= spam behavior)  ✅ **FINISHED 04/14/26**
+    - Operator highlight  ✅ **FINISHED 04/14/26**
+    - Better error handling (division by 0, NaN)  ✅ **FINISHED 04/14/26**
+    - Disable buttons during error  ✅ **FINISHED 04/14/26**
+    - Decimal precision control  ✅ **FINISHED 04/14/26**
 
 2. Theme Toggle - Dark Mode to Light mode button ✅ **FINISHED 04/12/26**
  
