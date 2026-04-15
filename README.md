@@ -33,7 +33,7 @@ calculator
 
 2. Theme Toggle - Dark Mode to Light mode button ✅ **FINISHED 04/12/26**
  
-3. History System
+3. History System (DELAY WORK IN PROGRESS)
     - Scrollable history panel
     - Click history to reuse result
     - Clear history button
