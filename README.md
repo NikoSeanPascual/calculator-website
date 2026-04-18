@@ -15,9 +15,10 @@ Capturing User Input - The app listens for a click event to what number you clic
 ```text
 calculator
 │
+|── Assets folder  # Images used in the project
 ├── index.html     # Main structure of the application
 ├── styles.css     # UI Styling and containers
-└── script.js       # Core Logic
+└── script.js      # Core Logic
 ```
 ---
 
@@ -34,16 +35,16 @@ calculator
 2. Theme Toggle - Dark Mode to Light mode button ✅ **FINISHED 04/12/26**
  
 3. History System ✅ **FINISHED 04/16/26**
-    - Scrollable history panel
+    - Scrollable history panel  ✅ **FINISHED 04/18/26**
     - Click history to reuse result ✅ **FINISHED 04/16/26**
     - Clear history button ✅ **FINISHED 04/16/26**
     - Persist history (localStorage) ✅ **FINISHED 04/16/26**
 
 4. Memory System
-    - MC (clear memory)
-    - MR (recall)
-    - M+ (add to memory)
-    - M- (subtract)\
+    - MC (clear memory) ✅ **FINISHED 04/18/26**
+    - MR (recall)  ✅ **FINISHED 04/18/26**
+    - M+ (add to memory)  ✅ **FINISHED 04/18/26**
+    - M- (subtract)  ✅ **FINISHED 04/18/26**
 
 5. Expression Handling
     - Show full expression (12 + 7 × 3)
@@ -51,12 +52,10 @@ calculator
     - Parentheses support ( )
 
 6. UI/UX Upgrades
-    - Button press animation
-    - Ripple effect
-    - Hover glow
-    - Smooth number transitions
-    - Auto-resize text
-    - Scroll display horizontally
+    - Button press animation ✅ **FINISHED 04/18/26**
+    - Hover glow ✅ **FINISHED 04/18/26**
+    - Smooth number transitions ✅ **FINISHED 04/18/26**
+    - Auto-resize text ✅ **FINISHED 04/18/26**
 
 7. Smart Input
     - Type full expression:
