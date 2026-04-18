@@ -32,7 +32,6 @@ h3 {
    color: #002185;
    text-shadow: 0px 0px 8px #808080;
 }
-
 .calculator {
     width: var(--size);
     border: 8px solid #002185;
@@ -54,10 +53,15 @@ h3 {
     height: 10%;
     min-height: 80px;
     border-bottom: 8px solid #002185;
-    display: flex;
     padding: 0.5rem;
     font-size: 3.5rem;
     box-sizing: border-box;
+
+    padding: 0 15px;
+    word-break: break-all;
+    overflow-x: hidden;
+    text-align: right;
+    transition: font-size 0.2s ease;
 }
 .buttons {
     display: grid;
@@ -80,6 +84,10 @@ h3 {
 }
 .btn:active {
     background: #c9dcff;
+}
+.btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
 }
 .operator { background: #1e7ff7; color: whitesmoke; text-shadow: 0px 0px 12px black}
 .action { background: #fc2d1e;}
@@ -151,13 +159,24 @@ body.dark-theme h3 {color: #00ff50; text-shadow: 0px 0px 7px #00ff50;}
     box-shadow: 0 0 15px rgba(252, 45, 30, 0.5);
     z-index: 10;
 }
+/* KEYFRAMES */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
+@keyframes number-pop {
+    0% { transform: translateY(2px); opacity: 0.5; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-number {
+    animation: number-pop 0.15s ease-out;
+}
 /* HISTORY PANELS*/
 .history-panel {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 0;
     right: 0;
@@ -188,9 +207,30 @@ body.dark-theme h3 {color: #00ff50; text-shadow: 0px 0px 7px #00ff50;}
     list-style: none;
     padding: 0;
     margin-top: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #002185 transparent
 }
+
+#history-list::-webkit-scrollbar {width: 6px;}
+#history-list::-webkit-scrollbar-track {background: transparent;}
+#history-list::-webkit-scrollbar-thumb {background-color: #002185; border-radius: 10px;}
+/* DARK MODE SCROLLBAR */
+body.dark-theme #history-list {scrollbar-color: #00ff50 transparent;}
+body.dark-theme #history-list::-webkit-scrollbar-thumb {background-color: #00ff50;}
 .history-item {
-    margin-bottom: 2px;
+    width: 230px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #002185;
+    margin-bottom: 4px;
+    margin-left: 6px;
     border-radius: 20px;
     font-family: "Jersey 10", sans-serif;
     padding: 6px;
@@ -243,4 +283,12 @@ body.dark-theme h3 {color: #00ff50; text-shadow: 0px 0px 7px #00ff50;}
 #clear-history:active {
     background: #c9dcff;
     transform: translateY(2px);
+}
+
+/*MEMORY BUTTONS*/
+.memory-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    padding: var(--gap);
 }

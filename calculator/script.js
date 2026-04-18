@@ -16,6 +16,11 @@ let shouldResetDisplay = false;
 let darkMode = false;
 let toggling = false;
 
+let memoryValue = parseFloat(localStorage.getItem("calcMemory")) || 0;
+
+function updateMemoryStorage() {
+    localStorage.setItem("calcMemory", memoryValue);
+}
 //UI & FORMATTING HELPERS
 function formatNumber(numStr) {
     let num = parseFloat(numStr);
@@ -47,14 +52,32 @@ function updateDisplay() {
         return;
     }
 
+    let text = "";
     if (operator && previousInput !== null) {
         const opSymbol = getOperatorSymbol(operator);
-        display.textContent = shouldResetDisplay
-            ? `${formatNumber(previousInput.toString())} ${opSymbol}`
-            : `${formatNumber(previousInput.toString())} ${opSymbol} ${formatNumber(currentInput)}`;
+        text = shouldResetDisplay
+            ? `${formatNumber(previousInput)} ${opSymbol}`
+            : `${formatNumber(previousInput)} ${opSymbol} ${formatNumber(currentInput)}`;
     } else {
-        display.textContent = formatNumber(currentInput);
+        text = formatNumber(currentInput);
     }
+
+    if (memoryValue !== 0) text = `M ${text}`;
+
+    // AUTO-RESIZE LOGIC
+    if (text.length > 12) {
+        display.style.fontSize = "1.8rem";
+    } else if (text.length > 8) {
+        display.style.fontSize = "2.5rem";
+    } else {
+        display.style.fontSize = "3.5rem";
+    }
+
+    // SMOOTH TRANSITION TRIGGER
+    display.textContent = text;
+    display.classList.remove("animate-number");
+    void display.offsetWidth; // "Magic" line to restart the CSS animation
+    display.classList.add("animate-number");
 }
 
 function getOperatorSymbol(op) {
@@ -84,7 +107,6 @@ function compute() {
 
     const prev = parseFloat(previousInput);
     const current = parseFloat(currentInput);
-
     let result;
 
     switch (operator) {
@@ -94,7 +116,7 @@ function compute() {
         case 'divide':
             if (current === 0) {
                 currentInput = "Error";
-                resetCalculatorState();
+                updateDisplay();
                 return;
             }
             result = prev / current;
@@ -102,17 +124,15 @@ function compute() {
         default: return;
     }
 
-    if (!isFinite(result)) {
-        currentInput = "Error";
-    } else {
-        const cleanResult = strip(result).toString();
-        const expression = `${formatNumber(prev)} ${getOperatorSymbol(operator)} ${formatNumber(current)} = ${formatNumber(cleanResult)}`;
+    const cleanResult = Number(Math.round(result + 'e12') + 'e-12').toString();
 
-        history.push(expression);
-        saveHistory();
-        renderHistory();
-        currentInput = cleanResult;
-    }
+    const expression = `${formatNumber(prev)} ${getOperatorSymbol(operator)} ${formatNumber(current)} = ${formatNumber(cleanResult)}`;
+
+    history.push(expression);
+    saveHistory();
+    renderHistory();
+
+    currentInput = cleanResult;
     resetCalculatorState();
 }
 
@@ -136,15 +156,12 @@ function inputNumber(num) {
 }
 
 function inputDecimal() {
-    if (currentInput === "Error") return;
-
     if (shouldResetDisplay) {
         currentInput = "0.";
         shouldResetDisplay = false;
         return;
     }
-
-    if (!currentInput.includes(".") && currentInput.length < 11) {
+    if (!currentInput.includes(".")) {
         currentInput += ".";
     }
 }
@@ -185,20 +202,58 @@ function clearAll() {
     shouldResetDisplay = false;
 }
 
+function memoryClear() {
+    memoryValue = 0;
+    updateMemoryStorage();
+    updateDisplay();
+}
+
+function memoryRecall() {
+    currentInput = memoryValue.toString();
+    shouldResetDisplay = true;
+}
+function memoryAdd() {
+    if (currentInput === "Error") return;
+
+    if (operator && previousInput !== null) {
+        compute();
+    }
+
+    let result = memoryValue + parseFloat(currentInput);
+    memoryValue = Number(Math.round(result + 'e12') + 'e-12');
+
+    updateMemoryStorage();
+    shouldResetDisplay = true;
+}
+
+function memorySubtract() {
+    if (currentInput === "Error") return;
+
+    let result = memoryValue - parseFloat(currentInput);
+    memoryValue = Number(Math.round(result + 'e12') + 'e-12');
+
+    updateMemoryStorage();
+    shouldResetDisplay = true;
+}
 // HISTORY & THEME
 function renderHistory() {
     historyList.innerHTML = "";
+
     history.slice().reverse().forEach(item => {
         const li = document.createElement("li");
         li.className = "history-item";
         li.textContent = item;
+
         li.onclick = () => {
             currentInput = item.split("=").pop().trim();
             shouldResetDisplay = true;
             updateDisplay();
         };
+
         historyList.appendChild(li);
     });
+
+    historyList.scrollTop = 0;
 }
 
 function saveHistory() {
@@ -250,13 +305,18 @@ buttons.forEach(button => {
                 case "percent": percent(); break;
                 case "backspace": backSpace(); break;
                 case "equals": compute(); break;
+
+                case "mc": memoryClear(); break;
+                case "mr": memoryRecall(); break;
+                case "mplus": memoryAdd(); break;
+                case "mminus": memorySubtract(); break;
+
                 default: chooseOperator(action); break;
             }
         }
         updateDisplay();
     });
 });
-
 document.addEventListener("keydown", (e) => {
     const key = e.key;
 

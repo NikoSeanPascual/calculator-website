@@ -11,10 +11,15 @@
 </head>
 <body>
 <h1>NIKO'S CALCULATOR</h1>
-<button id="theme-btn"><img id="theme-imgs" src="../assets/light-mode.png"></button>
+<button id="theme-btn"><img id="theme-imgs" src="assets/light-mode.png" alt="Theme Toggle button"></button>
 <div class="calculator" id="calculator-el">
     <div class="display" id="display-el"></div>
-
+    <div class="memory-buttons">
+        <button class="btn action" data-action="mc">MC</button>
+        <button class="btn action" data-action="mr">MR</button>
+        <button class="btn action" data-action="mplus">M+</button>
+        <button class="btn action" data-action="mminus">M-</button>
+    </div>
     <div class="buttons">
         <button class="btn action" data-action="clear">AC</button>
         <button class="btn action" data-action="backspace">del</button>
@@ -42,12 +47,13 @@
         <button class="btn equals" data-action="equals">=</button>
     </div>
 </div>
-<button id="history-toggle"><img id="history-img" src="../assets/history-panel.png"></button>
+<button id="history-toggle"><img id="history-img" src="assets/history-panel.png" alt="history toggle button"></button>
 
 <div class="history-panel" id="history-panel">
     <div class="history-header">
         <h3>History</h3>
-        <button id="clear-history"><img id="delete-history" src="../assets/delete.png"></button>
+        <button id="clear-history"><img id="delete-history" src="assets/delete.png" alt="Delete history button">
+        </button>
     </div>
     <ul id="history-list"></ul>
 </div>
