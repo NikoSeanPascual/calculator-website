@@ -58,7 +58,7 @@ calculator
     - Auto-resize text ✅ **FINISHED 04/18/26**
 
 7. Smart Input
-    - Type full expression:
+    - Type full expression:(BIG UPDATE TOMORROW)
     -  Press enter -> evaluate
 
 8. Undo/Redo
