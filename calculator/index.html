@@ -7,19 +7,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Calculator</title>
+    <title>Niko's Calculator</title>
 </head>
 <body>
 <h1>NIKO'S CALCULATOR</h1>
+
 <button id="theme-btn"><img id="theme-imgs" src="assets/light-mode.png" alt="Theme Toggle button"></button>
+
 <div class="calculator" id="calculator-el">
     <div class="display" id="display-el"></div>
+
     <div class="memory-buttons">
         <button class="btn action" data-action="mc">MC</button>
         <button class="btn action" data-action="mr">MR</button>
         <button class="btn action" data-action="mplus">M+</button>
         <button class="btn action" data-action="mminus">M-</button>
     </div>
+
     <div class="buttons">
         <button class="btn action" data-action="clear">AC</button>
         <button class="btn action" data-action="backspace">del</button>
@@ -44,9 +48,13 @@
 
         <button class="btn" data-number="0">0</button>
         <button class="btn" data-action="decimal">.</button>
+        <button class="btn action" data-action="pi">π</button>
+        <button class="btn action" data-action="open-paren">(</button>
+        <button class="btn action" data-action="close-paren">)</button>
         <button class="btn equals" data-action="equals">=</button>
     </div>
 </div>
+
 <button id="history-toggle"><img id="history-img" src="assets/history-panel.png" alt="history toggle button"></button>
 
 <div class="history-panel" id="history-panel">
@@ -57,6 +65,7 @@
     </div>
     <ul id="history-list"></ul>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
