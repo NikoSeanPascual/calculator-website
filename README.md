@@ -3,7 +3,7 @@
 A project made to simply try to add as much features possible in a Calculator App, it has a slick and simple design "currently" (it will change a lot, as features get added)
 
 [**View Live Demo 👉**](https://nikos-calculator-app.netlify.app/)
-
+(LINK IS NOT UP TO DATE)
 ---
 
 ## ⚙️ How it works
@@ -24,7 +24,7 @@ calculator
 
 ## 🚧 Future updates 
 1. Polishing Updates
-    - Backspace (⌫) ✅ **FINISHED 04/13/26**
+    - Backspace (del) ✅ **FINISHED 04/13/26**
     - Keyboard input support ✅ **FINISHED 04/13/26**
     - Continuous equals (= spam behavior)  ✅ **FINISHED 04/14/26**
     - Operator highlight  ✅ **FINISHED 04/14/26**
@@ -47,9 +47,9 @@ calculator
     - M- (subtract)  ✅ **FINISHED 04/18/26**
 
 5. Expression Handling
-    - Show full expression (12 + 7 × 3)
-    - Evaluate with proper precedence (BODMAS 👀)
-    - Parentheses support ( )
+    - Show full expression (12 + 7 × 3) ✅ **FINISHED 04/21/26**
+    - Evaluate with proper precedence (BODMAS 👀) ✅ **FINISHED 04/21/26**
+    - Parentheses support ( ) ✅ **FINISHED 04/21/26**
 
 6. UI/UX Upgrades
     - Button press animation ✅ **FINISHED 04/18/26**
@@ -58,19 +58,19 @@ calculator
     - Auto-resize text ✅ **FINISHED 04/18/26**
 
 7. Smart Input
-    - Type full expression:(BIG UPDATE TOMORROW)
-    -  Press enter -> evaluate
+    - Type full expression: ✅ **FINISHED 04/21/26**
+    -  Press enter -> evaluate ✅ **FINISHED 04/21/26**
 
 8. Undo/Redo
-    - Undo/Redo 
-      * Ctrl+Z -> Undo
-      * Ctrl+Y -> Redo
+    - Undo/Redo  
+      * Ctrl+Z -> Undo ✅ **FINISHED 04/21/26**
+      * Ctrl+Y -> Redo ✅ **FINISHED 04/21/26**
      
 9. Fun Features
-    - sound effects (click click)
-    - glitch mode
-    - “rage mode” if user spams buttons
-    - random math facts
+    - sound effects (click click) ✅ **FINISHED 04/21/26**
+    - glitch mode ✅ **FINISHED 04/21/26**
+    - “rage mode” if user spams buttons ✅ **FINISHED 04/21/26**
+    - random math facts (W.I.P)
 
 10. Mobile Responsiveness
     - It should look the same in Mobiles like it looks like in PC
