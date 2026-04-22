@@ -3,7 +3,6 @@
 A project made to simply try to add as much features possible in a Calculator App, it has a slick and simple design "currently" (it will change a lot, as features get added)
 
 [**View Live Demo 👉**](https://nikos-calculator-app.netlify.app/)
-(LINK IS NOT UP TO DATE)
 ---
 
 ## ⚙️ How it works
@@ -68,9 +67,9 @@ calculator
      
 9. Fun Features
     - sound effects (click click) ✅ **FINISHED 04/21/26**
-    - glitch mode ✅ **FINISHED 04/21/26**
-    - “rage mode” if user spams buttons ✅ **FINISHED 04/21/26**
-    - random math facts (W.I.P)
+    - glitch mode ✅ **FINISHED 04/21/26** (spam the H1 and spam it again if you want to go back)
+    - “rage mode” if user spams buttons ✅ **FINISHED 04/21/26** (just spam)
+    - random math facts ✅ **FINISHED 04/22/26** (AFK for 10 seconds)
 
 10. Mobile Responsiveness
-    - It should look the same in Mobiles like it looks like in PC
+    - It should look the same in Mobiles like it looks like in PC ✅ **FINISHED 04/22/26**
