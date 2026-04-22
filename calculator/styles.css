@@ -1,3 +1,8 @@
+* {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
 :root {
   --bg-color: #2370eb;
   --calculator-bg: #c0dafa;
@@ -79,7 +84,6 @@ h3 {
     font-size: 3rem;
     cursor: pointer;
     border-radius: 5px;
-
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn:active {background: #c9dcff;}
@@ -163,11 +167,9 @@ body.dark-theme h3 {color: #00ff50; text-shadow: 0px 0px 7px #00ff50;}
     background: #97c1f7;
     border-left: 8px solid #002185;
     padding: 10px;
-
     transform: translateX(100%);
     opacity: 1;
     pointer-events: none;
-
     transition: transform 0.2s ease;
     z-index: 1000;
 }
@@ -187,7 +189,6 @@ body.dark-theme h3 {color: #00ff50; text-shadow: 0px 0px 7px #00ff50;}
     scrollbar-width: thin;
     scrollbar-color: #002185 transparent
 }
-
 #history-list::-webkit-scrollbar {width: 6px;}
 #history-list::-webkit-scrollbar-track {background: transparent;}
 #history-list::-webkit-scrollbar-thumb {background-color: #002185; border-radius: 10px;}
@@ -247,7 +248,6 @@ body.dark-theme #history-list::-webkit-scrollbar-thumb {background-color: #00ff5
 }
 /* MAX CHAOS GLITCH MODE */
 body.glitch-mode {background: #000 !important; filter: saturate(200%) contrast(150%); overflow: hidden;}
-/* Add a scanline overlay */
 body.glitch-mode::before {
     content: " ";
     display: block;
@@ -260,7 +260,7 @@ body.glitch-mode::before {
     pointer-events: none;
     animation: scanline-flicker 0.05s infinite;
 }
-/* Violent Jitter for Display and Header */
+/*VIOLENT JITTER*/
 body.glitch-mode .display,
 body.glitch-mode h1 {
     text-shadow:
@@ -269,11 +269,9 @@ body.glitch-mode h1 {
         0 2px #ff0000;
     animation: glitch-vibrate 0.1s infinite alternate-reverse;
 }
-/* Button Madness: Random Scale, Rotation, and Colors */
+/* BUTTON GLITCH ANIMATION*/
 body.glitch-mode .btn {position: relative; animation: btn-chaos 0.2s infinite;}
-
 body.glitch-mode .btn:nth-child(odd) {animation-delay: 0.05s; filter: hue-rotate(90deg);}
-
 body.glitch-mode .btn:nth-child(3n) {animation-direction: reverse; filter: invert(100%);}
 @keyframes glitch-vibrate {
     0% { transform: translate(0); clip-path: inset(10% 0 30% 0); }
@@ -283,7 +281,6 @@ body.glitch-mode .btn:nth-child(3n) {animation-direction: reverse; filter: inver
     80% { transform: translate(2px, -5px); }
     100% { transform: translate(0); }
 }
-
 @keyframes btn-chaos {
     0% { transform: translate(0) rotate(0deg) scale(1); }
     25% { transform: translate(2px, -2px) rotate(1deg) scale(1.05); }
@@ -291,14 +288,12 @@ body.glitch-mode .btn:nth-child(3n) {animation-direction: reverse; filter: inver
     75% { transform: translate(1px, 1px) rotate(0.5deg); }
     100% { transform: translate(0); }
 }
-
 @keyframes scanline-flicker {
     0% { opacity: 0.3; }
     50% { opacity: 0.5; }
     100% { opacity: 0.3; }
 }
 body.glitch-mode .calculator {animation: screen-tear 1.5s infinite;}
-
 @keyframes screen-tear {
     0%, 90%, 100% { transform: skew(0deg); }
     92% { transform: skew(10deg); filter: invert(100%); }
@@ -307,7 +302,7 @@ body.glitch-mode .calculator {animation: screen-tear 1.5s infinite;}
 }
 /* RAGE MODE */
 body.rage-mode {background: #4a0000 !important; transition: background 0.1s ease;}
-body.rage-mode .calculator { border-color: #ff0000 !important; box-shadow: 0 0 30px #ff0000; animation: rage-shake 0.1s infinite;}
+body.rage-mode .calculator {background: #910606; border-color: #ff0000 !important; box-shadow: 0 0 30px #ff0000; animation: rage-shake 0.1s infinite;}
 body.rage-mode .display {color: #ff0000 !important; border-bottom-color: #ff0000 !important; background: #1a0000;}
 body.rage-mode .btn {background: #660000 !important; color: #ff0000 !important; border-color: #ff0000 !important;}
 @keyframes rage-shake {
@@ -322,4 +317,67 @@ body.rage-mode .btn {background: #660000 !important; color: #ff0000 !important; 
     80% { transform: translate(-1px, -1px) rotate(1deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+/* FACT POPUP STYLES */
+.fact-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.fact-card {
+    background: var(--calculator-bg);
+    border: 6px solid #002185;
+    padding: 2.5rem;
+    max-width: 400px;
+    width: 80%;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: scale(0.7) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* THE ACTIVE STATE */
+.fact-overlay.active {visibility: visible; pointer-events: auto; opacity: 1;}
+/* CARD TRANSITIONS */
+.fact-overlay.active .fact-card {transform: scale(1) translateY(0);}
+.fact-header {font-family: "Jersey 10", sans-serif; font-size: 2.5rem; color: #fc2d1e; margin-bottom: 1.5rem;}
+#fact-text {font-family: "Jersey 10", sans-serif; font-size: 1.40rem; color: #002185; line-height: 1.5; margin-bottom: 2rem;}
+.fact-footer {font-family: "Jersey 10", sans-serif; font-size: 1.2rem; color: rgba(0, 33, 133, 0.5); text-transform: uppercase; animation: pulse 1.5s infinite;}
+/* THEME ADAPTATIONS */
+body.dark-theme .fact-card { border-color: #00ff50; background: #0f752f; }
+body.dark-theme #fact-text { color: #00ff50; }
+body.dark-theme .fact-footer { color: #00ff50; opacity: 0.6; }
+body.glitch-mode .fact-card { animation: glitch-vibrate 0.2s infinite; border-color: #ff00c1; }
+body.rage-mode .fact-card { border-color: #ff0000; background: #4a0000; }
+body.rage-mode #fact-text { color: #ff0000; }
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 480px) {
+    :root {
+        --size: 90vw;
+        --gap: 4px;
+    }
+    body {padding: 10px; justify-content: flex-start; padding-top: 60px; height: -webkit-fill-available;}
+    h1 {font-size: 32px; margin-bottom: 10px;}
+    .display {font-size: 2.5rem; height: 70px;}
+    .btn {font-size: 2rem; border-width: 3px;}
+    .history-panel {width: 100%; border-left: none;}
+    .fact-card {width: 85%; padding: 1.5rem;}
+    .fact-header {font-size: 1.8rem;}
+    #fact-text {font-size: 1rem;}
+}
+@media (max-height: 500px) and (orientation: landscape) {
+    body {flex-direction: row; gap: 20px; padding-top: 10px;}
+    h1 { display: none; }
+    .calculator {transform: scale(0.8);}
 }

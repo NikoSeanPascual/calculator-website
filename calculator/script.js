@@ -6,8 +6,10 @@ const themeImgs = document.getElementById("theme-imgs");
 const historyList = document.getElementById("history-list");
 const clearHistoryBtn = document.getElementById("clear-history");
 const historyPanel = document.getElementById("history-panel");
-const historyToggle = document.getElementById("history-toggle"); // Fixed: removed duplicate
+const historyToggle = document.getElementById("history-toggle");
 const title = document.querySelector("h1");
+const factOverlay = document.getElementById("fact-overlay");
+const factText = document.getElementById("fact-text");
 
 // AUDIO
 const clickSound = new Audio("assets/click.mp3");
@@ -22,6 +24,24 @@ let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
 let memoryValue = parseFloat(localStorage.getItem("calcMemory")) || 0;
 let clickTimes = [];
 let isRageMode = false;
+const mathFacts = [
+    "0.1 + 0.2 != 0.3 (in JS because yes)",
+    "Pi has no end...",
+    "111,111,111 * 111,111,111 = 12345678987654321",
+    "A 'jiffy' is 1/100th of a second(search it up)",
+    "4 is the only number with 4 letters",
+    "Abacus is the first calculator",
+    "The word 'Hundred' means 120",
+    "2 & 5 are the only primes ending in 2 & 5",
+    "Multiplying 1089 by 9 gives 9801",
+    "0 is not represented in Roman numerals",
+    "Every odd number has the letter (e)",
+    "The (Hairy Ball) Theorem: This is a real mathematical principle.",
+    "The number 40 is the only number whose letters are in alphabetical order",
+    "Google is 1 followed by 100 zeros"
+];
+
+let idleTimer;
 
 let shouldResetDisplay = false;
 let darkMode = false;
@@ -92,7 +112,6 @@ function evaluateExpression() {
         const result = new Function(`return ${mathReady}`)();
 
         if (!isFinite(result)) throw new Error("Math Error");
-
         const cleanResult = strip(result).toString();
 
         history.push(`${expression} = ${cleanResult}`);
@@ -141,6 +160,7 @@ function redo() {
 // EVENT LISTENERS (BUTTONS)
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        resetIdleTimer();
         const now = Date.now();
         clickTimes.push(now);
         clickTimes = clickTimes.filter(time => now - time < 2000);
@@ -217,7 +237,9 @@ buttons.forEach(button => {
         updateDisplay();
     });
 });
+
 title.addEventListener("click", (e) => {
+    resetIdleTimer();
     clickTimes = [];
 
     titleClickCount++;
@@ -229,8 +251,10 @@ title.addEventListener("click", (e) => {
         console.log("GLITCH MODE TOGGLED");
     }
 });
+
 // KEYBOARD SUPPORT
 document.addEventListener("keydown", (e) => {
+    resetIdleTimer();
     const key = e.key;
     const now = Date.now();
 
@@ -276,7 +300,6 @@ document.addEventListener("keydown", (e) => {
             return;
         }
     }
-
     if (/[0-9]/.test(key)) { saveState(); expression += key; }
     else if (key === ".") { saveState(); if (!expression.endsWith(".")) expression += "."; }
     else if (key === "+") { saveState(); expression += "+"; }
@@ -293,6 +316,7 @@ document.addEventListener("keydown", (e) => {
 
     updateDisplay();
 });
+
 // HISTORY & THEME
 function renderHistory() {
     historyList.innerHTML = "";
@@ -301,6 +325,7 @@ function renderHistory() {
         li.className = "history-item";
         li.textContent = item;
         li.onclick = () => {
+            resetIdleTimer();
             playClick();
             expression = item.split("=").pop().trim();
             historyPanel.classList.remove("show");
@@ -334,6 +359,7 @@ clearHistoryBtn.addEventListener("click", () => {
 });
 
 themeBtn.addEventListener("click", () => {
+    resetIdleTimer();
     playClick();
     if (toggling) return;
     toggling = true;
@@ -343,6 +369,33 @@ themeBtn.addEventListener("click", () => {
     setTimeout(() => toggling = false, 700);
 });
 
+// POP UP FUNCTIONS
+function showFact() {
+    if (factOverlay.classList.contains("active")) return;
+
+    const randomFact = mathFacts[Math.floor(Math.random() * mathFacts.length)];
+    factText.textContent = randomFact;
+    factOverlay.classList.add("active");
+}
+
+function hideFact() {
+    factOverlay.classList.remove("active");
+}
+
+factOverlay.addEventListener("click", hideFact);
+
+function resetIdleTimer() {
+    clearTimeout(idleTimer);
+
+
+    idleTimer = setTimeout(() => {
+        if (!isRageMode) {
+            showFact();
+        }
+    }, 10000);
+}
+
 // INITIALIZATION
 renderHistory();
 updateDisplay();
+resetIdleTimer();
